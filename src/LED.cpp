@@ -33,7 +33,7 @@
 
 LED* LED::pFirst = 0;
 
-#ifndef RTOS_FOUND
+#ifndef RTOS_USED
 Timer LEDCtrlTimer{Timer::Type::Down, LEDCtrlTime, true};
 #endif
 
@@ -157,10 +157,8 @@ LED* pLED;
 
     pLED = LED::pFirst;
 
-#ifndef RTOS_FOUND
+#ifndef RTOS_USED
     if(LEDCtrlTimer.Elapsed())
-#else
-    if(1)   // compiler should optimize it if enabled
 #endif
     {
         while(1)

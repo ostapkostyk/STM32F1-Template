@@ -33,7 +33,7 @@
 
 #include "common.h"
 
-#ifndef RTOS_FOUND
+#ifndef RTOS_USED
 #include <Timer.h>
 
 using namespace mTimer;

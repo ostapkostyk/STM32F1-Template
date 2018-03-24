@@ -33,7 +33,7 @@
 
 Button* Button::pFirst = 0;
 
-#ifndef RTOS_FOUND
+#ifndef RTOS_USED
 Timer ButtonCtrlTimer{Timer::Type::Down, ButtonCtrlTime, true};
 #endif
 
@@ -105,10 +105,8 @@ Button* pButton;
 
     pButton = Button::pFirst;
 
-#ifndef RTOS_FOUND
+#ifndef RTOS_USED
     if(ButtonCtrlTimer.Elapsed())
-#else
-    if(1)   //  compiler will optimize it if enabled
 #endif
     {
         while(1)
