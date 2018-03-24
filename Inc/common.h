@@ -6,6 +6,10 @@
 #include "memmgr.h"
 #include "debug.h"
 
+#ifdef osCMSIS_KERNEL
+#define RTOS_FOUND
+#endif
+
 // HW dependent definitions:
 #define PORT_DEF         GPIO_TypeDef*      //  Port type definition
 #define PIN_NUM_DEF      uint16_t           //  Pin number type definition

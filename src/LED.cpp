@@ -6,7 +6,8 @@
   *          This code handles LED's (Light emitting diodes) operation
   *          Constructor of the class creates linked list of LEDs
   *          Main handler handles all LEDs from the list ones called
-  *          Main handler must be called periodically (e.g. in main cycle)
+  *          Main handler must be called periodically (e.g. in main cycle or
+  *          in thread)
   *
   ******************************************************************************
   * Copyright (C) 2018  Ostap Kostyk
@@ -32,7 +33,9 @@
 
 LED* LED::pFirst = 0;
 
+#ifndef RTOS_FOUND
 Timer LEDCtrlTimer{Timer::Type::Down, LEDCtrlTime, true};
+#endif
 
 LED::LED(PORT_DEF Port, PIN_NUM_DEF Pin, eActiveLevel Level)
 {
@@ -154,7 +157,11 @@ LED* pLED;
 
     pLED = LED::pFirst;
 
+#ifndef RTOS_FOUND
     if(LEDCtrlTimer.Elapsed())
+#else
+    if(1)   // compiler should optimize it if enabled
+#endif
     {
         while(1)
         {
