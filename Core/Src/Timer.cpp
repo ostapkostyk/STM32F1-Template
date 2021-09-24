@@ -123,7 +123,10 @@ Timer* pTimer;
                 pTimer->Value++;
                 if(pTimer->InitVal != 0)
                 {
-                    if(pTimer->Value == pTimer->InitVal) { pTimer->RanOutFlag = true; }
+                    if(pTimer->Value == pTimer->InitVal)
+                    {
+                    	pTimer->RanOutFlag = true;
+                    }
                 }
                 break;
 
@@ -146,7 +149,10 @@ Timer* pTimer;
             // do nothing
         }
 
-        if(pTimer->Next == 0) { return; }   //  all timers done
+        if(pTimer->Next == 0)    //  all timers done
+        {
+        	return;
+        }
 
         pTimer = pTimer->Next;
     }
@@ -177,7 +183,10 @@ bool Timer::Elapsed()
 bool tmp;
 
     tmp = RanOutFlag;
-    if(tmp) { RanOutFlag = 0; }
+    if(tmp)
+    {
+    	RanOutFlag = 0;
+    }
     return tmp;
 }
 
